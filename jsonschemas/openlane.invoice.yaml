@@ -1,0 +1,41 @@
+address:
+  isBillTo: false
+  isShipTo: false
+  location:
+    address1: ""
+    address2: ""
+    city: ""
+    country: ""
+    postalCode: ""
+    region: ""
+  name: ""
+  phone: ""
+businessPartner:
+  accountNumber: ""
+  name: ""
+customer:
+  customerId: 0
+  email: ""
+  firstName: ""
+  lastName: ""
+  name: ""
+location:
+  address1: ""
+  address2: ""
+  city: ""
+  country: ""
+  postalCode: ""
+  region: ""
+organization:
+  id: ""
+  name: ""
+paymentTerm:
+  createdBy: ""
+  description: ""
+  isActive: false
+  name: ""
+  timeCreated: "0001-01-01T00:00:00Z"
+  timeUpdated: "0001-01-01T00:00:00Z"
+  updatedBy: ""
+  value: ""
+products: null

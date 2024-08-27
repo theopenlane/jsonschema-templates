@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/theopenlane/jsonschema-templates/generate/invoice/config",
+  "$defs": {
+    "BusinessPartner": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name also called customer name"
+        },
+        "accountNumber": {
+          "type": "string",
+          "description": "AccountNumber of the business partner"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "BusinessPartner is the business partner (customer) details"
+    },
+    "Customer": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the customer"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "FirstName of the customer"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "LastName of the customer"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email contact of the customer"
+        },
+        "customerId": {
+          "type": "integer",
+          "description": "CustomerID is the unique identifier for the customer"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "Customer includes the customer details for invoicing"
+    },
+    "CustomerAddress": {
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name  of the customer"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the customer"
+        },
+        "isBillTo": {
+          "type": "boolean",
+          "description": "IsBillTo is used to identify as the customer's billing address."
+        },
+        "isShipTo": {
+          "type": "boolean",
+          "description": "IsShipTo is used to identify as the customer's shipping address."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "CustomerAddress is the address details for the customer"
+    },
+    "Location": {
+      "properties": {
+        "address1": {
+          "type": "string",
+          "description": "AddAddress1 is the first line of the address"
+        },
+        "address2": {
+          "type": "string",
+          "description": "Address2 is the second line of the address"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "PostalCode is the postal code of the address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City is the city of the address"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country is the country of the address"
+        },
+        "region": {
+          "type": "string",
+          "description": "Region is the region of the address"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "Location details for the invoice"
+    },
+    "Organization": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the organization"
+        },
+        "id": {
+          "type": "string",
+          "description": "ID of the organization"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "Organization details of the organization"
+    },
+    "PaymentTerm": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the payment term"
+        },
+        "value": {
+          "type": "string",
+          "description": "Value of the payment term"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the payment term"
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "IsActive is true if the payment term is active"
+        },
+        "timeCreated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "TimeCreated is the time the payment term was created"
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "CreatedBy is the user that created the payment term"
+        },
+        "timeUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "TimeUpdated is the time the payment term was updated"
+        },
+        "updatedBy": {
+          "type": "string",
+          "description": "UpdatedBy is the user that updated the payment term"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "PaymentTerm includes the payment term details"
+    },
+    "Product": {
+      "properties": {
+        "partNumber": {
+          "type": "string",
+          "description": "PartNumber is the unique identifier for the product"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Quantity of the product"
+        },
+        "unitPrice": {
+          "type": "number",
+          "description": "UnitPrice is the price of the product"
+        },
+        "unitOfMeasure": {
+          "type": "string",
+          "description": "UnitOfMeasure is the unit of measure for the product"
+        },
+        "billingCategory": {
+          "type": "string",
+          "description": "BillingCategory  service billing category"
+        },
+        "productCategory": {
+          "type": "string",
+          "description": "Product category"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "description": "Product the invoice is for"
+    }
+  },
+  "properties": {
+    "customer": {
+      "$ref": "#/$defs/Customer"
+    },
+    "products": {
+      "items": {
+        "$ref": "#/$defs/Product"
+      },
+      "type": "array"
+    },
+    "paymentTerm": {
+      "$ref": "#/$defs/PaymentTerm"
+    },
+    "organization": {
+      "$ref": "#/$defs/Organization"
+    },
+    "location": {
+      "$ref": "#/$defs/Location"
+    },
+    "address": {
+      "$ref": "#/$defs/CustomerAddress"
+    },
+    "businessPartner": {
+      "$ref": "#/$defs/BusinessPartner"
+    }
+  },
+  "additionalProperties": false,
+  "type": "object",
+  "description": "Config represents the configuration for the invoice"
+}

@@ -1,0 +1,63 @@
+version: "3"
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task --list
+
+  generate:invoice:
+    desc: generate jsonschema for invoices
+    dir: generate
+    cmds:
+      - go run schema_generator.go
+
+  ## Go tasks
+  go:lint:
+    desc: runs golangci-lint, the most annoying opinionated linter ever
+    dir: generate
+    cmds:
+      - golangci-lint run --config=.golangci.yaml --verbose --fast
+
+  go:test:
+    desc: runs and outputs results of created go tests
+    dir: generate
+    cmds:
+      - go test -v ./...
+
+  go:test:cover:
+    desc: runs and outputs results of created go tests with coverage
+    aliases: [cover]
+    dir: generate
+    cmds:
+      - go test -v ./... -coverprofile=coverage.out
+      - go tool cover -html=coverage.out
+
+  go:fmt:
+    desc: format all go code
+    dir: generate
+    cmds:
+      - go fmt ./...
+
+  go:tidy:
+    desc: Runs go mod tidy on the backend
+    dir: generate
+    aliases: [tidy]
+    cmds:
+      - go mod tidy
+
+  go:all:
+    aliases: [go]
+    desc: Runs all go test and lint related tasks
+    cmds:
+      - task: go:tidy
+      - task: go:fmt
+      - task: go:lint
+      - task: go:test
+
+  precommit-full:
+    desc: Lint the project against all files
+    cmds:
+      - pre-commit install && pre-commit install-hooks
+      - pre-commit autoupdate
+      - pre-commit run --show-diff-on-failure --color=always --all-files
