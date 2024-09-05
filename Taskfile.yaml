@@ -1,5 +1,8 @@
 version: "3"
 
+env:
+  GOFLAGS: -buildvcs=false
+
 tasks:
   default:
     silent: true
