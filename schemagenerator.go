@@ -1,4 +1,4 @@
-package jsonschematemplates
+package main
 
 import (
 	"encoding/json"
@@ -7,6 +7,8 @@ import (
 	"github.com/invopop/jsonschema"
 	"github.com/invopop/yaml"
 	"github.com/mcuadros/go-defaults"
+
+	"github.com/theopenlane/jsonschema-templates/invoice"
 )
 
 // const values used for the schema generator
@@ -14,8 +16,8 @@ const (
 	tagName        = "json"
 	skipper        = "-"
 	defaultTag     = "default"
-	jsonSchemaPath = "../jsonschemas/theopenlane.invoice.json"
-	yamlConfigPath = "../jsonschemas/theopenlane.invoice.yaml"
+	jsonSchemaPath = "jsonschemas/openlane.invoice.json"
+	yamlConfigPath = "jsonschemas/openlane.invoice.yaml"
 	ownerReadWrite = 0600
 )
 
@@ -33,7 +35,7 @@ func main() {
 		yamlConfigPath: yamlConfigPath,
 	}
 
-	if err := generateSchema(c, &Config{}); err != nil {
+	if err := generateSchema(c, &invoice.Config{}); err != nil {
 		panic(err)
 	}
 }
@@ -48,7 +50,7 @@ func generateSchema(c schemaConfig, structure interface{}) error {
 	// set the tag name to `koanf` for the koanf struct tags
 	r.FieldNameTag = tagName
 
-	if err := r.AddGoComments("github.com/theopenlane/jsonschema-templates/generate", "./"); err != nil {
+	if err := r.AddGoComments("github.com/theopenlane/jsonschema-templates", "./"); err != nil {
 		panic(err.Error())
 	}
 
@@ -65,7 +67,7 @@ func generateSchema(c schemaConfig, structure interface{}) error {
 	}
 
 	// generate yaml schema with default
-	yamlConfig := &Config{}
+	yamlConfig := &invoice.Config{}
 	defaults.SetDefaults(yamlConfig)
 
 	// this uses the `json` tag to generate the yaml schema

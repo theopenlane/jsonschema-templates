@@ -1,4 +1,4 @@
-package jsonschematemplates
+package invoice
 
 import "time"
 

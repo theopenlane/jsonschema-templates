@@ -37,7 +37,3 @@ Thumbs.db
 
 *.mime
 *.mim
-
-*.env
-*.env-dev
-*.config.yaml
