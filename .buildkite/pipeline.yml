@@ -9,8 +9,8 @@ steps:
         cancel_on_build_failing: true
         plugins:
           - docker#v5.11.0:
-              image: "registry.hub.docker.com/golangci/golangci-lint:latest-alpine"
-              command: ["golangci-lint", "run", "-v"]
+              image: "ghcr.io/theopenlane/build-image:latest"
               always-pull: true
+              command: ["task", "go:lint"]
               environment:
                 - "GOTOOLCHAIN=auto"

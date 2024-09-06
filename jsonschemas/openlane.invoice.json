@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/theopenlane/jsonschema-templates/generate/invoice/config",
+  "$id": "https://github.com/theopenlane/jsonschema-templates/invoice/config",
   "$defs": {
     "BusinessPartner": {
       "properties": {
