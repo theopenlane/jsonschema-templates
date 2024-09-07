@@ -11,34 +11,40 @@ tasks:
 
   generate:invoice:
     desc: generate jsonschema for invoices
+    dir: generate
     cmds:
       - go run schemagenerator.go
 
   ## Go tasks
   go:lint:
     desc: runs golangci-lint, the most annoying opinionated linter ever
+    dir: generate
     cmds:
       - golangci-lint run --config=.golangci.yaml --verbose --fast
 
   go:test:
     desc: runs and outputs results of created go tests
+    dir: generate
     cmds:
       - go test -v ./...
 
   go:test:cover:
     desc: runs and outputs results of created go tests with coverage
     aliases: [cover]
+    dir: generate
     cmds:
       - go test -v ./... -coverprofile=coverage.out
       - go tool cover -html=coverage.out
 
   go:fmt:
     desc: format all go code
+    dir: generate
     cmds:
       - go fmt ./...
 
   go:tidy:
     desc: Runs go mod tidy on the backend
+    dir: generate
     aliases: [tidy]
     cmds:
       - go mod tidy

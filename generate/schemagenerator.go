@@ -16,8 +16,8 @@ const (
 	tagName        = "json"
 	skipper        = "-"
 	defaultTag     = "default"
-	jsonSchemaPath = "jsonschemas/openlane.invoice.json"
-	yamlConfigPath = "jsonschemas/openlane.invoice.yaml"
+	jsonSchemaPath = "../jsonschemas/openlane.invoice.json"
+	yamlConfigPath = "../jsonschemas/openlane.invoice.yaml"
 	ownerReadWrite = 0600
 )
 
