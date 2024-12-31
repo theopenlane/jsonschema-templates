@@ -3,7 +3,7 @@ module github.com/theopenlane/jsonschema-templates
 go 1.23.0
 
 require (
-	github.com/invopop/jsonschema v0.12.0
+	github.com/invopop/jsonschema v0.13.0
 	github.com/invopop/yaml v0.3.1
 	github.com/mcuadros/go-defaults v1.2.0
 )
